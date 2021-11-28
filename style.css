@@ -1,0 +1,15 @@
+.container {
+  margin: 20px 0;
+}
+
+.todo-box {
+  margin: 5px 0;
+}
+
+.complete {
+  text-decoration: line-through;
+}
+
+.incomplete {
+  color: red;
+}
