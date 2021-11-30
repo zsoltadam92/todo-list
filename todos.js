@@ -24,30 +24,22 @@ const todos = [
 
 
 export const initTodos = () => {
-  renderTodos();
+  displayTodos();
 
   addListItem();
 
   updateProgress()
 };
 
-
-const updateProgress = () => {
-  document.querySelector('#calculator-percent').textContent = `${Math.round(calculateCompleted(todos) *100)}%`
-  if(todos.length === 0) {
-    document.querySelector('#calculator-percent').textContent = `0%`
-  }
-}
-
-const renderTodos = () => {
+const displayTodos = () => {
   const containerTodos = document.querySelector('.todos-container')
   containerTodos.innerHTML = "";
 
   todos.forEach(todo => {
     containerTodos.innerHTML += `
     <div class="todo-box">
-    <span class="${todo.isComplete ? 'complete' : ' incomplete'}">${todo.name}</span>
       <input type="checkbox" ${todo.isComplete ? 'checked' : ''}>
+      <span class="${todo.isComplete ? 'complete' : ' incomplete'} list-item">${todo.name}</span>
       <i class="fas fa-trash-alt delete-button" data-todoid="${todo.id}"></i>
     </div>
     `
@@ -55,7 +47,51 @@ const renderTodos = () => {
 
   checkboxEvents()
 
-  //listaelem törlése
+  deleteListItem()
+}
+
+
+//új elem hozzáadása
+const addListItem = () => {
+  document.querySelector('.add-button').addEventListener('click', () => {
+    const todoWrite = document.querySelector('.todo-write')
+    let name = todoWrite.value
+    let isComplete = false
+  
+    todos.push({
+      id: uuidv4(),
+      name: name,
+      isComplete: isComplete
+    })
+    
+    updateProgress()
+    displayTodos()
+    todoWrite.value = ""
+  })
+}
+
+// checkbox események
+const checkboxEvents = () => {
+  const checkboxes = document.querySelectorAll('input[type=checkbox]');
+  checkboxes.forEach((checkbox,index) => {
+    checkbox.addEventListener('click', () => {
+      todos[index].isComplete = checkbox.checked
+      updateProgress()
+      displayTodos()
+    })
+  });
+}
+
+//calculator
+const updateProgress = () => {
+  document.querySelector('#calculator-percent').textContent = `${Math.round(calculateCompleted(todos))}%`
+  if(todos.length === 0) {
+    document.querySelector('#calculator-percent').textContent = `0%`
+  }
+}
+
+//listaelem törlése
+const deleteListItem = () =>{
   let deleteButtons = document.querySelectorAll('.delete-button')
   deleteButtons.forEach(deleteButton => {
       deleteButton.addEventListener('click', (e) => {
@@ -72,39 +108,11 @@ const renderTodos = () => {
       todos.splice(foundIndex, 1)
   
       updateProgress()
-      renderTodos()
+      displayTodos()
     })
   })
 }
 
-// checkbox események
-const checkboxEvents = () => {
-  const checkboxes = document.querySelectorAll('input[type=checkbox]');
-  checkboxes.forEach((checkbox,index) => {
-    checkbox.addEventListener('click', () => {
-      todos[index].isComplete = checkbox.checked
-      updateProgress()
-      renderTodos()
-    })
-  });
-}
 
-const addListItem = () => {
-  document.querySelector('.add-button').addEventListener('click', () => {
-    const todoWrite = document.querySelector('.todo-write')
-    let name = todoWrite.value
-    let isComplete = false
-  
-    todos.push({
-      id: uuidv4(),
-      name: name,
-      isComplete: isComplete
-    })
-    
-    updateProgress()
-    renderTodos()
-    todoWrite.value = ""
-  })
-}
 
 
