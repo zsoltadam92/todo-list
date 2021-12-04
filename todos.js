@@ -136,13 +136,13 @@ const deleteListItem = () =>{
 // növekvő sorrend
 const increaseList = () => {
   todos.sort((a,b) => {
-    let nameA = a.name.toUpperCase()
-    let nameB = b.name.toUpperCase()
+    let difficultyA = a.difficulty
+    let difficultyB = b.difficulty
   
-    if(nameA < nameB) {
+    if(difficultyA < difficultyB) {
       return -1
     }
-    if(nameA > nameB) {
+    if(difficultyA > difficultyB) {
       return 1
     }
   
@@ -153,13 +153,13 @@ const increaseList = () => {
 // csökkenő sorrend
 const decreaseList = () => {
   todos.sort((a,b) => {
-    let nameA = a.name.toUpperCase()
-    let nameB = b.name.toUpperCase()
+    let difficultyA = a.difficulty
+    let difficultyB = b.difficulty
   
-    if(nameA > nameB) {
+    if(difficultyA > difficultyB) {
       return -1
     }
-    if(nameA < nameB) {
+    if(difficultyA < difficultyB) {
       return 1
     }
   
