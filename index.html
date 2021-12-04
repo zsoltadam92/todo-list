@@ -12,13 +12,23 @@
   <div class="container">
     <h1>Todo list</h1>
     <div class="new-item">
-      <input type="text" class="todo-write" placeholder="Adja meg a feladatot">
+      <input type="text" id="todo-thing" placeholder="Adja meg a feladatot">
+      <input type="number" id="difficulty" name="difficulty" min="1" max="5" placeholder="Nehézség">
       <button class="add-button">Add</button>
     </div>
+    <span id="difficultNumberError"></span>
+    <span id="emptyInput"></span>
     <div class="todos-container"></div>
     <div id="calculator">
       <span id="calculator-title">Completed: </span>
       <span id="calculator-percent"></span>
+    </div>
+    <div class="order">
+      <button id="increase">Növekvő</button>
+      <button id="decrease">Csökkenő</button>
+    </div>
+    <div class="hardest">
+      <p>Legnehezebb elem: <span id="hardestItem"></span></p> 
     </div>
   </div>
   

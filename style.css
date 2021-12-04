@@ -32,17 +32,26 @@ h1 {
   padding: 1rem;
 }
 
-.todo-write {
+#todo-thing {
   height: 2rem;
   line-height: 2rem;
   width: 50%;
+  font-size: 1rem;
+}
+
+#difficulty {
+  height: 2rem;
+  line-height: 2rem;
+  width: 20%;
+  margin: 0 0.5rem;
+  font-size: 1rem;
 }
 
 @media screen and (max-width: 992px) {
   .container {
     width: 100vw;
   }
-  .todo-write {
+  #todo-write {
     width: 90%;
   }
 }
