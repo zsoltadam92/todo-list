@@ -46,12 +46,11 @@ const displayTodos = () => {
 const validateDifficult = () => {
   const todoDifficulty = document.querySelector('#difficulty')
   const error = document.querySelector('#difficultNumberError');
-  const regex = /[^1-5]+/;
 
   todoDifficulty.addEventListener('input', (e) => {
     const value = e.target.value;
 
-    if (regex.test(value)) {
+    if (value < 1 || value > 5) {
       todoDifficulty.value = value.slice(0, value.length - 1);
       error.textContent = 'Csak 1 és 5 közötti szám adható meg!';
     } else {
