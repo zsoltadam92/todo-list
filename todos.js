@@ -1,4 +1,4 @@
-import { calculateCompleted, uuidv4 } from "./calculator.js";
+import { calculateCompleted } from "./calculator.js";
 
 
 const todos = []
@@ -16,19 +16,18 @@ export const initTodos = () => {
 const displayTodos = () => {
   const containerTodos = document.querySelector('.todos-container')
   containerTodos.innerHTML = "";
-  document.querySelector('#difficultNumberError').classList.remove('error-style')
 
   // legnehezebb elem
   const hardestTodo = document.querySelector('#hardestItem')
   hardestTodo.innerHTML = ''
   let difficultItems = todos.map(todo => todo.difficulty)
 
-  todos.forEach(todo => {
+  todos.forEach((todo,index) => {
     containerTodos.innerHTML += `
     <div class="todo-box">
       <input type="checkbox" ${todo.isComplete ? 'checked' : ''}>
-      <span class="${todo.isComplete ? 'complete' : ' incomplete'} list-item">${todo.name} - ${todo.difficulty}</span>
-      <i class="fas fa-trash-alt delete-button" data-todoid="${todo.id}"></i>
+      <span class="${todo.isComplete ? 'complete' : ' incomplete'} list-item">${index + 1}. ${todo.name} - ${todo.difficulty}</span>
+      <i class="fas fa-trash-alt delete-button"></i>
     </div>
     `
 
@@ -88,7 +87,6 @@ const addListItem = () => {
     
     // hozzáadja az új elemet
     todos.push({
-      id: uuidv4(),
       name: name,
       difficulty: difficulty,
       isComplete: isComplete,
@@ -124,19 +122,9 @@ const updateProgress = () => {
 //listaelem törlése
 const deleteListItem = () =>{
   let deleteButtons = document.querySelectorAll('.delete-button')
-  deleteButtons.forEach(deleteButton => {
-      deleteButton.addEventListener('click', (e) => {
-      let id = e.target.dataset.todoid
-      console.log(id);
-      let foundIndex;
-      for (let index = 0; index < todos.length; index++) {
-        if(todos[index].id === id) {
-          foundIndex = index
-          break;
-        }
-      }
-  
-      todos.splice(foundIndex, 1)
+  deleteButtons.forEach((deleteButton,index) => {
+      deleteButton.addEventListener('click', () => {
+        todos.splice(index, 1);
   
       updateProgress()
       displayTodos()
