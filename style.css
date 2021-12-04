@@ -24,6 +24,10 @@ h1 {
   margin: 1rem;
 }
 
+button {
+  cursor: pointer;
+}
+
 .new-item {
   width: 90%;
   display: flex;
@@ -33,32 +37,53 @@ h1 {
 }
 
 #todo-thing {
-  height: 2rem;
-  line-height: 2rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
   width: 50%;
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
 #difficulty {
-  height: 2rem;
-  line-height: 2rem;
-  width: 20%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  width: 25%;
   margin: 0 0.5rem;
-  font-size: 1rem;
+  font-size: 1.3rem;
+}
+
+.add-button {
+  height: 2.5rem;
+  width: 4rem;
+  font-size: 1.2rem;
 }
 
 @media screen and (max-width: 992px) {
   .container {
     width: 100vw;
   }
-  #todo-write {
+  #todo-thing {
     width: 90%;
+  }
+  #difficulty {
+    width: 45%;
   }
 }
 
-.add-button {
-  height: 2rem;
-  width: 3rem;
+@media screen and (max-width: 600px) {
+  .new-item {
+    height: 30%;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+}
+
+.error-style {
+  background-color: rgb(180, 39, 39);
+  color: white;
+  margin: 0.3rem;
+  font-size: 1.1rem;
+  padding: 0.2rem;
+  transition: all linear 0.3s;
 }
 
 .todo-box {
@@ -90,4 +115,19 @@ input[type="checkbox"] {
 #calculator-percent {
   font-weight: 700;
   font-size: 1.2rem;
+}
+
+.order {
+  margin: 1rem;
+}
+
+.order > button {
+  font-size: 1rem;
+  padding: 0.3rem;
+}
+
+.hardest > p,
+#hardestItem {
+  font-size: 1.3rem;
+  font-weight: 700;
 }

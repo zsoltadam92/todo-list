@@ -16,6 +16,7 @@ export const initTodos = () => {
 const displayTodos = () => {
   const containerTodos = document.querySelector('.todos-container')
   containerTodos.innerHTML = "";
+  document.querySelector('#difficultNumberError').classList.remove('error-style')
 
   // legnehezebb elem
   const hardestTodo = document.querySelector('#hardestItem')
@@ -53,8 +54,10 @@ const validateDifficult = () => {
     if (value < 1 || value > 5) {
       todoDifficulty.value = value.slice(0, value.length - 1);
       error.textContent = 'Csak 1 és 5 közötti szám adható meg!';
+      error.classList.add('error-style')
     } else {
       error.textContent = '';
+      error.classList.remove('error-style')
     }
   });
 }
@@ -73,11 +76,14 @@ const addListItem = () => {
     let isComplete = false
 
     //üresen hagyott mező figyelmeztetés
+    const emptyInput = document.querySelector('#emptyInput')
     if (name == "" || difficulty == "") {
-      document.querySelector('#emptyInput').textContent = "Töltse ki az üres mezőket!"
+      emptyInput.textContent = "Töltse ki az üres mezőket!"
+      emptyInput.classList.add('error-style')
       return false;
     } else {
-      document.querySelector('#emptyInput').textContent = ""
+      emptyInput.textContent = ""
+      emptyInput.classList.remove('error-style')
     }
     
     // hozzáadja az új elemet
